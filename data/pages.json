@@ -1,0 +1,38 @@
+{
+  "services": {
+    "id": "services",
+    "title": "Услуги",
+    "slug": "services",
+    "metaDescription": "Платформы, приложения, интеграции и консалтинг для фармы.",
+    "content": "",
+    "menuOrder": 3,
+    "visible": true
+  },
+  "industry": {
+    "id": "industry",
+    "title": "Отрасль",
+    "slug": "industry",
+    "metaDescription": "Специфика работы с фармой, GxP, регуляторика.",
+    "content": "",
+    "menuOrder": 4,
+    "visible": true
+  },
+  "technologies": {
+    "id": "technologies",
+    "title": "Технологии",
+    "slug": "technologies",
+    "metaDescription": "Стек и подходы к разработке.",
+    "content": "",
+    "menuOrder": 6,
+    "visible": true
+  },
+  "contacts": {
+    "id": "contacts",
+    "title": "Контакты",
+    "slug": "contacts",
+    "metaDescription": "Связь с нами: телефон, email, форма заявки.",
+    "content": "",
+    "menuOrder": 7,
+    "visible": true
+  }
+}

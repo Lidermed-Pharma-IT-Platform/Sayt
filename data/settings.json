@@ -1,0 +1,21 @@
+{
+  "phone": "+998933921161",
+  "email": "samandarsaidjanov@gmail.com",
+  "address": "Doʻmbirobod 4-tor koʻchasi, 23/2",
+  "notificationEmail": "",
+  "social": {
+    "telegram": "https://t.me/s_saidjanov",
+    "whatsapp": "",
+    "instagram": ""
+  },
+  "meta": {
+    "defaultTitle": "Lidermed Platform",
+    "defaultDescription": "IT-решения для фармацевтической отрасли — Узбекистан"
+  },
+  "seo": {},
+  "smtp": {
+    "host": "",
+    "user": "",
+    "auth": false
+  }
+}

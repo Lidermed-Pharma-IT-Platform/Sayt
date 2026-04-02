@@ -1,0 +1,20 @@
+[
+  {
+    "id": "mmhdwztukfxj4xnhktl",
+    "name": "Uktambek Amonov",
+    "email": "uktambekamonov0@gmail.com",
+    "phone": "+998886268800",
+    "type": "consult",
+    "message": "Test",
+    "createdAt": "2026-03-08T06:42:00.930Z"
+  },
+  {
+    "id": "mmt6plgt4p304jz97lu",
+    "name": "Test User",
+    "email": "test@test.com",
+    "phone": "+998901234567",
+    "type": "consult",
+    "message": "Test zayvka",
+    "createdAt": "2026-03-16T12:53:32.525Z"
+  }
+]

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Услуги и решения — Lidermed Platform</title>
+  <meta name="description" content="Платформы, приложения, интеграции и консалтинг для фармацевтических компаний. GxP-совместимые решения.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-i18n-page-title="pageTitleServices">
+  <a href="#main-content" class="skip-link">Перейти к содержимому</a>
+  <header class="site-header">
+    <div class="container inner">
+      <a href="index.html" class="logo" aria-label="Lidermed Platform"><img class="logo__img" src="img/logo-lidermed.png" alt="" width="360" height="70"><span class="logo__wordmark"><span data-i18n="logoWordmarkPrefix">Lidermed.</span><span class="logo__wordmark-platform" data-i18n="logoWordmarkPlatform">Platform</span></span></a>
+      <button type="button" class="menu-toggle" aria-label="Открыть навигацию" aria-expanded="false" aria-controls="navMain" id="menuToggle" data-i18n="navMenu">☰</button>
+      <nav class="nav-main" id="navMain" role="navigation" aria-label="Основная навигация">
+        <div class="nav-links">
+          <a href="index.html" data-i18n="navHome">Главная</a>
+          <a href="index.html#uslugi" class="active" aria-current="page" data-i18n="navServices">Услуги</a>
+          <a href="contacts.html" data-i18n="navContacts">Контакты</a>
+        </div>
+        <div class="nav-actions">
+          <span class="lang-switch">
+            <a href="#" data-lang="ru" class="lang-link">RU</a>
+            <span class="lang-sep">|</span>
+            <a href="#" data-lang="uz" class="lang-link">O'Z</a>
+          </span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="page-header">
+      <div class="container">
+        <h1 data-i18n="servicesTitle">Услуги и решения</h1>
+        <p class="breadcrumb"><a href="index.html" data-i18n="breadcrumbHome">Главная</a> → <span data-i18n="navServices">Услуги</span></p>
+      </div>
+    </section>
+
+    <section class="content-area section">
+      <div class="container">
+        <p class="section-subtitle mb-0" data-i18n="servicesSub">Полный спектр IT-услуг для фармацевтических компаний: от консалтинга до внедрения и сопровождения.</p>
+
+        <div class="services-list" id="servicesContainer" style="margin-top: 40px;">
+          <div class="service-item">
+            <h3 data-i18n="srvCRM">CRM</h3>
+            <p data-i18n="srvCRMLong">Управление взаимоотношениями с клиентами: учёт обращений, история контактов, воронки продаж. Решения для фармкомпаний с учётом отраслевой специфики.</p>
+          </div>
+          <div class="service-item">
+            <h3 data-i18n="srvAutomation">Автоматизационный процесс для детализации и аналитики</h3>
+            <p data-i18n="srvAutomationLong">Автоматизация бизнес-процессов, детализированная отчётность и аналитика. Дашборды, отчёты и единое пространство данных для принятия решений.</p>
+          </div>
+          <div class="service-item">
+            <h3 data-i18n="srvSpecial">Специальное для вас</h3>
+            <p data-i18n="srvSpecialLong">Индивидуальные решения под ваши задачи: доработка существующих систем, разработка под ключ, интеграции и консалтинг по запросу.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="grid">
+        <div><h4>Lidermed Platform</h4><p data-i18n="footerTagline">IT-решения для фармацевтической отрасли</p></div>
+        <div><h4 data-i18n="footerSections">Разделы</h4><ul><li><a href="index.html#uslugi" data-i18n="navServices">Услуги</a></li><li><a href="contacts.html" data-i18n="navContacts">Контакты</a></li></ul></div>
+        <div><h4 data-i18n="footerDocuments">Документы</h4><ul><li><a href="privacy.html" data-i18n="footerPrivacy">Политика конфиденциальности</a></li></ul><div id="footerSocial" class="footer-social"></div></div>
+      </div>
+      <div class="footer-bottom"><span data-i18n="footerCopyright">© 2026 Lidermed Platform. Все права защищены.</span></div>
+    </div>
+  </footer>
+
+  <div class="cookie-notice" id="cookieNotice">
+    <p data-i18n-html="cookieHtml">Мы используем файлы cookie. <a href="privacy.html">Политика конфиденциальности</a>.</p>
+    <button type="button" class="btn btn-primary" id="cookieAccept" data-i18n="cookieAccept">Принять</button>
+  </div>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

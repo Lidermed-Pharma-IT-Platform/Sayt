@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ-панель — Lidermed Platform</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+    .admin-header h1 { margin: 0; font-size: 1.5rem; }
+    .admin-card { background: var(--color-surface); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 24px; box-shadow: var(--shadow); border: 1px solid var(--color-border); }
+    .admin-card h2 { margin: 0 0 8px; font-size: 1.2rem; color: var(--accent); }
+    .admin-card .section-subtitle { margin-bottom: 20px; }
+    .back-link { color: var(--color-primary); font-size: 0.9rem; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .login-wrap { max-width: 380px; margin: 80px auto; padding: 36px; background: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--color-border); }
+    .login-wrap h1 { margin: 0 0 24px; text-align: center; font-size: 1.3rem; color: var(--accent); }
+    .login-error { color: #F87171; margin-top: 12px; font-size: 0.9rem; }
+    .row-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; }
+    .badge-published { background: rgba(52, 211, 153, 0.15); color: #34D399; }
+    .badge-draft { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+    .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 768px) { .two-cols { grid-template-columns: 1fr; } }
+    .content-blocks { border: 1px solid var(--color-border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; background: rgba(255,255,255,0.02); }
+    .content-blocks h4 { margin: 0 0 10px; font-size: 0.92rem; color: var(--accent); }
+    @media (max-width: 900px) {
+      .login-wrap { margin: 40px 16px; }
+      .admin-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body data-i18n-page-title="a_pageTitle">
+  <div id="loginPanel" class="login-wrap">
+    <h1 data-i18n="a_loginTitle">Вход в админ-панель</h1>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="loginName" data-i18n="a_login">Логин</label>
+        <input type="text" id="loginName" required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label for="loginPass" data-i18n="a_password">Пароль</label>
+        <input type="password" id="loginPass" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;" data-i18n="a_enter">Войти</button>
+      <p id="loginError" class="login-error"></p>
+    </form>
+  </div>
+
+  <div id="adminWrap" style="display: none;">
+    <button type="button" class="admin-sidebar-toggle" id="sidebarToggle" aria-label="Menu">☰</button>
+    <div class="admin-sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="admin-layout">
+      <aside class="admin-sidebar" id="adminSidebar">
+        <p style="padding: 0 24px 8px; color: #888; font-size: 0.9rem;" data-i18n="a_panelTitle">Админ-панель</p>
+        <div class="lang-switcher" style="padding: 0 24px 12px; display:flex; gap:8px; align-items:center;">
+          <a href="#" class="lang-link" data-lang="ru">RU</a>
+          <span style="color:#666">|</span>
+          <a href="#" class="lang-link" data-lang="uz">O'Z</a>
+        </div>
+        <a href="/" data-i18n="a_toSite">На сайт</a>
+        <a href="#" data-tab="leads" data-i18n="a_leads">Заявки</a>
+        <a href="#" data-tab="pages" data-i18n="a_pages">Страницы</a>
+        <a href="#" data-tab="content" data-i18n="a_content">Контент (главная)</a>
+        <a href="#" data-tab="cases" data-i18n="a_cases">Кейсы</a>
+        <a href="#" data-tab="news" data-i18n="a_news">Новости</a>
+        <a href="#" data-tab="settings" data-i18n="a_settings">Настройки</a>
+        <a href="#" data-tab="users" id="usersTab" style="display:none;" data-i18n="a_users">Пользователи</a>
+        <a href="#" id="logoutBtn" data-i18n="a_logout">Выйти</a>
+      </aside>
+      <main class="admin-main">
+        <div class="admin-header">
+          <h1 data-i18n="a_management">Lidermed Platform — управление</h1>
+          <a href="/" class="back-link" data-i18n="a_backToSite">← На сайт</a>
+        </div>
+
+        <div id="panelLeads" class="panel">
+          <div class="admin-card">
+            <h2 data-i18n="a_leads">Заявки</h2>
+            <p class="section-subtitle" data-i18n="a_leadsSub">Просмотр и экспорт заявок с формы обратной связи.</p>
+            <p><a href="/api/leads/export?format=csv" id="exportCsv" class="btn btn-outline" data-i18n="a_exportCsv">Экспорт в CSV</a></p>
+            <div id="leadsList">Загрузка…</div>
+          </div>
+        </div>
+
+        <div id="panelPages" class="panel">
+          <div class="admin-card">
+            <h2 data-i18n="a_editPages">Управление страницами</h2>
+            <p class="section-subtitle" data-i18n="a_pagesSub">Редактирование контента и мета-описаний страниц, порядок в меню.</p>
+            <div id="pagesList">Загрузка…</div>
+            <div id="pageEditForm" style="display:none; margin-top:24px;">
+              <h3 data-i18n="a_editPage">Редактировать страницу</h3>
+              <form id="pageForm">
+                <input type="hidden" id="pageId">
+                <div class="form-group">
+                  <label data-i18n="a_title">Заголовок</label>
+                  <input type="text" id="pageTitle">
+                </div>
+                <div class="form-group">
+                  <label data-i18n="a_metaDesc">Meta description (SEO)</label>
+                  <input type="text" id="pageMetaDesc">
+                </div>
+                <div class="form-group">
+                  <label data-i18n="a_contentHtml">Контент (HTML)</label>
+                  <textarea id="pageContent" rows="8"></textarea>
+                </div>
+                <div class="form-group">
+                  <label><input type="checkbox" id="pageVisible" checked> <span data-i18n="a_showInMenu">Показывать в меню</span></label>
+                </div>
+                <div class="form-group">
+                  <label data-i18n="a_menuOrder">Порядок в меню</label>
+                  <input type="number" id="pageMenuOrder" value="0">
+                </div>
+                <button type="submit" class="btn btn-primary" data-i18n="a_save">Сохранить</button>
+                <button type="button" class="btn btn-outline" id="pageFormCancel" data-i18n="a_cancel">Отмена</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div id="panelContent" class="panel">
+          <div class="admin-card">
+            <h2 data-i18n="a_contentMain">Контент главной страницы</h2>
+            <p class="section-subtitle" data-i18n="a_contentMainSub">Hero-блок, преимущества, цифры.</p>
+            <form id="contentForm">
+              <div class="form-group">
+                <label data-i18n="a_heroTitle">Hero: заголовок</label>
+                <input type="text" id="contentHeroTitle">
+              </div>
+              <div class="form-group">
+                <label data-i18n="a_heroLead">Hero: подзаголовок</label>
+                <textarea id="contentHeroLead" rows="3"></textarea>
+              </div>
+              <div id="contentBenefits"></div>
+              <p><button type="button" class="btn btn-outline" id="addBenefit" data-i18n="a_addBenefit">+ Добавить преимущество</button></p>
+              <div id="contentStats"></div>
+              <p><button type="button" class="btn btn-outline" id="addStat" data-i18n="a_addStat">+ Добавить цифру</button></p>
+              <h4 style="margin-top:24px;" data-i18n="a_servicesBlock">Услуги (расм + описание)</h4>
+              <p class="section-subtitle" data-i18n="a_servicesBlockSub">CRM, автоматизация и др. — укажите название и описание.</p>
+              <div id="contentServices"></div>
+              <p><button type="button" class="btn btn-outline" id="addService" data-i18n="a_addService">+ Добавить услугу</button></p>
+              <button type="submit" class="btn btn-primary" data-i18n="a_save">Сохранить</button>
+              <span id="contentStatus" class="form-status"></span>
+            </form>
+          </div>
+        </div>
+
+        <div id="panelCases" class="panel">
+          <div class="admin-card">
+            <h2 data-i18n="a_cases">Кейсы</h2>
+            <p class="section-subtitle" data-i18n="a_casesSub">Добавление, редактирование, публикация/снятие с публикации.</p>
+            <div id="casesList">Загрузка…</div>
+            <div id="caseFormWrap" style="display:none; margin-top:24px;">
+              <h3 id="caseFormTitle" data-i18n="a_caseNew">Новый кейс</h3>
+              <form id="caseForm">
+                <input type="hidden" id="caseId">
+                <div class="form-group"><label data-i18n="a_title">Название</label><input type="text" id="caseTitle" required></div>
+                <div class="form-group"><label data-i18n="a_task">Задача</label><textarea id="caseTask" rows="2"></textarea></div>
+                <div class="form-group"><label data-i18n="a_solution">Решение</label><textarea id="caseSolution" rows="2"></textarea></div>
+                <div class="form-group"><label data-i18n="a_result">Результат</label><textarea id="caseResult" rows="2"></textarea></div>
+                <div class="form-group"><label><input type="checkbox" id="casePublished"> <span data-i18n="a_publish">Опубликовать</span></label></div>
+                <div class="form-group"><label data-i18n="a_order">Порядок</label><input type="number" id="caseOrder" value="0"></div>
+                <button type="submit" class="btn btn-primary" data-i18n="a_save">Сохранить</button>
+                <button type="button" class="btn btn-outline" id="caseFormCancel" data-i18n="a_cancel">Отмена</button>
+              </form>
+            </div>
+            <p style="margin-top:16px;"><button type="button" class="btn btn-primary" id="caseAddBtn" data-i18n="a_addCase">+ Добавить кейс</button></p>
+          </div>
+        </div>
+
+        <div id="panelNews" class="panel">
+          <div class="admin-card">
+            <h2 data-i18n="a_newsBlog">Новости / Блог</h2>
+            <p class="section-subtitle" data-i18n="a_newsSub">Публикации и новости компании.</p>
+            <div id="newsList">Загрузка…</div>
+            <div id="newsFormWrap" style="display:none; margin-top:24px;">
+              <h3 id="newsFormTitle" data-i18n="a_newPost">Новая запись</h3>
+              <form id="newsForm">
+                <input type="hidden" id="newsId">
+                <div class="form-group"><label data-i18n="a_title">Заголовок</label><input type="text" id="newsTitle" required></div>
+                <div class="form-group"><label data-i18n="a_excerpt">Краткое описание</label><textarea id="newsExcerpt" rows="2"></textarea></div>
+                <div class="form-group"><label data-i18n="a_body">Текст</label><textarea id="newsBody" rows="6"></textarea></div>
+                <div class="form-group"><label><input type="checkbox" id="newsPublished"> <span data-i18n="a_publish">Опубликовать</span></label></div>
+                <button type="submit" class="btn btn-primary" data-i18n="a_save">Сохранить</button>
+                <button type="button" class="btn btn-outline" id="newsFormCancel" data-i18n="a_cancel">Отмена</button>
+              </form>
+            </div>
+            <p style="margin-top:16px;"><button type="button" class="btn btn-primary" id="newsAddBtn" data-i18n="a_addNews">+ Добавить новость</button></p>
+          </div>
+        </div>
+
+        <div id="panelSettings" class="panel">
+          <div class="admin-card">
+            <h2 data-i18n="a_siteSettings">Настройки сайта</h2>
+            <p class="section-subtitle" data-i18n="a_siteSettingsSub">Контакты в подвале, соцсети, мета-теги, SEO, уведомления на email.</p>
+            <form id="settingsForm">
+              <h4 data-i18n="a_contacts">Контакты</h4>
+              <div class="form-group"><label data-i18n="a_phone">Телефон</label><input type="text" id="setPhone"></div>
+              <div class="form-group"><label data-i18n="a_email">Email</label><input type="email" id="setEmail"></div>
+              <div class="form-group"><label data-i18n="a_address">Адрес</label><input type="text" id="setAddress"></div>
+              <h4 data-i18n="a_social">Соцсети</h4>
+              <div class="form-group"><label>Telegram</label><input type="text" id="setTelegram" placeholder="https://t.me/..."></div>
+              <div class="form-group"><label>WhatsApp</label><input type="text" id="setWhatsapp" placeholder="https://wa.me/..."></div>
+              <div class="form-group"><label>Instagram</label><input type="text" id="setInstagram" placeholder="https://instagram.com/..."></div>
+              <h4 data-i18n="a_metaDefault">Мета (по умолчанию)</h4>
+              <div class="form-group"><label>Title</label><input type="text" id="setMetaTitle"></div>
+              <div class="form-group"><label>Description</label><input type="text" id="setMetaDesc"></div>
+              <h4 data-i18n="a_notifyEmail">Уведомления на email</h4>
+              <div class="form-group"><label data-i18n="a_emailForLeads">Email для заявок</label><input type="email" id="setNotificationEmail" data-i18n-placeholder="a_notifyEmailPlaceholder" placeholder="Куда присылать уведомление о новой заявке"></div>
+              <h4 data-i18n="a_smtp">SMTP (для отправки писем)</h4>
+              <div class="form-group"><label data-i18n="a_host">Host</label><input type="text" id="setSmtpHost" placeholder="smtp.example.com"></div>
+              <div class="form-group"><label data-i18n="a_port">Port</label><input type="number" id="setSmtpPort" placeholder="587"></div>
+              <div class="form-group"><label data-i18n="a_user">User</label><input type="text" id="setSmtpUser"></div>
+              <div class="form-group"><label data-i18n="a_password">Password</label><input type="password" id="setSmtpPass" data-i18n-placeholder="a_smtpPassPlaceholder" placeholder="Оставьте пустым, чтобы не менять"></div>
+              <button type="submit" class="btn btn-primary" data-i18n="a_save">Сохранить</button>
+              <span id="settingsStatus" class="form-status"></span>
+            </form>
+          </div>
+        </div>
+
+        <div id="panelUsers" class="panel">
+          <div class="admin-card">
+            <h2 data-i18n="a_usersTitle">Пользователи и роли</h2>
+            <p class="section-subtitle" data-i18n="a_usersSub">Разграничение прав: редактор, администратор.</p>
+            <div id="usersList">Загрузка…</div>
+            <div style="margin-top:24px;">
+              <h3 data-i18n="a_addUser">Добавить пользователя</h3>
+              <form id="userForm">
+                <div class="form-group"><label data-i18n="a_login">Логин</label><input type="text" id="userLogin" required></div>
+                <div class="form-group"><label data-i18n="a_password">Пароль</label><input type="password" id="userPassword" required></div>
+                <div class="form-group"><label data-i18n="a_role">Роль</label><select id="userRole"><option value="editor" data-i18n="a_editor">Редактор</option><option value="admin" data-i18n="a_administrator">Администратор</option></select></div>
+                <button type="submit" class="btn btn-primary" data-i18n="a_add">Добавить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/i18n.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
