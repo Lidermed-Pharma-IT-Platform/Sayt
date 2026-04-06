@@ -1,7 +1,5 @@
 /* Lidermed IT Platform — High-Tech Dark Theme. Space Grotesk (headings) + Inter (body). */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
 :root {
   --bg: #F5F7FA;
   --accent: #0D9488;
@@ -58,6 +56,18 @@ html {
 }
 .skip-link:focus {
   top: 12px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 body::before {
@@ -199,6 +209,9 @@ select:focus-visible,
 }
 
 .nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
@@ -208,6 +221,11 @@ select:focus-visible,
   overflow-y: hidden;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
 }
 
 .nav-links::-webkit-scrollbar {
@@ -639,10 +657,18 @@ select:focus-visible,
 .slide-img {
   flex: 1;
   min-height: 0;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   background-color: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-img__picture {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
 }
 
 .slide-caption {
@@ -762,6 +788,12 @@ select:focus-visible,
 .section-products {
   padding-top: 32px;
   padding-bottom: 56px;
+}
+.section-products .section-title {
+  margin-bottom: 28px;
+}
+#whyWe .section-title {
+  margin-bottom: 24px;
 }
 .product-grid {
   display: grid;
@@ -1022,11 +1054,14 @@ select:focus-visible,
 }
 
 .stats--reasons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
-  padding: 0;
 }
-.stats--reasons > div {
+
+.stats--reasons > li {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1038,7 +1073,7 @@ select:focus-visible,
   transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
   text-align: center;
 }
-.stats--reasons > div:hover {
+.stats--reasons > li:hover {
   border-color: rgba(13, 148, 136, 0.25);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
@@ -1167,7 +1202,7 @@ select:focus-visible,
   margin-bottom: 32px;
 }
 
-.site-footer h4 {
+.site-footer h3 {
   font-family: var(--font-heading);
   color: #E2E8F0;
   margin: 0 0 16px;
@@ -1587,7 +1622,7 @@ select:focus-visible,
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
-  .stats--reasons > div {
+  .stats--reasons > li {
     padding: 20px 12px;
   }
   .contact-grid {

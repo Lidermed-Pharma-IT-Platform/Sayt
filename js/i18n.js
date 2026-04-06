@@ -253,7 +253,12 @@
       privacy5P: 'Сайт может использовать файлы cookie для обеспечения работы сервисов и аналитики. Вы можете настроить браузер для отказа от cookie, учитывая возможное ограничение функциональности сайта.',
       privacy6Title: '6. Контакты',
       privacy6P: 'По вопросам обработки персональных данных обращайтесь:',
-      pageTitleIndex: 'IT-решения для фармацевтической отрасли — Lidermed IT Platform',
+      pageTitleIndex: 'Lidermed — автоматизация медицины и фармацевтики в Узбекистане | IT Platform',
+      metaDescriptionIndex: 'Lidermed — автоматизация медицины и фармацевтики в Узбекистане: CRM для медицинских представителей, аналитика продаж (Analytics), обучение (Academy). Консалтинг и внедрение IT-систем.',
+      skipLink: 'Перейти к содержимому',
+      sectionSliderHeading: 'Наши платформы в работе',
+      sectionProductsDetailTitle: 'Возможности по продуктам',
+      footerNavHeading: 'Разделы сайта',
 
       a_pageTitle: 'Админ-панель — Lidermed IT Platform',
       a_loginTitle: 'Вход в админ-панель',
@@ -621,7 +626,12 @@
       privacy5P: 'Sayt xizmatlar ishlashi va analitika uchun cookie fayllardan foydalanishi mumkin. Brauzerda cookie dan bosh tortishingiz mumkin, sayt funksionalligining cheklanishi mumkinligini hisobga olgan holda.',
       privacy6Title: '6. Aloqa',
       privacy6P: 'Shaxsiy ma\'lumotlarni qayta ishlash bo\'yicha savollar uchun murojaat qiling:',
-      pageTitleIndex: 'Farmasevtika sanoati uchun IT yechimlar — Lidermed IT Platform',
+      pageTitleIndex: 'Lidermed — O\'zbekistonda tibbiyotni avtomatlashtirish | IT platformasi',
+      metaDescriptionIndex: 'Lidermed — O\'zbekistonda tibbiyot va farmatsevtikani avtomatlashtirish: tibbiy vakillar uchun CRM, sotuvlar tahlili (Analytics), o\'qitish (Academy). Konsultatsiya va tizimlarni joriy etish.',
+      skipLink: 'Asosiy tarkibga o\'tish',
+      sectionSliderHeading: 'Platformalarimiz amalda',
+      sectionProductsDetailTitle: 'Mahsulotlar bo\'yicha imkoniyatlar',
+      footerNavHeading: 'Sayt bo\'limlari',
 
       a_pageTitle: 'Admin panel — Lidermed IT Platform',
       a_loginTitle: 'Admin panelga kirish',
@@ -747,7 +757,7 @@
 
   function getLang() {
     var stored = localStorage.getItem(STORAGE_KEY);
-    return (stored === 'uz' || stored === 'ru') ? stored : 'ru';
+    return (stored === 'uz' || stored === 'ru') ? stored : 'uz';
   }
 
   function setLang(lang) {
@@ -782,6 +792,11 @@
 
     var pageTitleKey = document.body.getAttribute('data-i18n-page-title');
     if (pageTitleKey && L[pageTitleKey]) document.title = L[pageTitleKey];
+
+    document.querySelectorAll('meta[data-i18n-content]').forEach(function (m) {
+      var ck = m.getAttribute('data-i18n-content');
+      if (ck && L[ck] !== undefined) m.setAttribute('content', L[ck]);
+    });
 
     document.querySelectorAll('.lang-link').forEach(function (a) {
       a.classList.remove('active');
