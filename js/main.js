@@ -1,5 +1,5 @@
 /**
- * Lidermed Platform — корпоративный сайт. Меню, cookie, формы. RU/O'Z i18n.
+ * Lidermed IT Platform — корпоративный сайт. Меню, cookie, формы. RU/O'Z i18n.
  */
 (function () {
   'use strict';
@@ -15,7 +15,7 @@
     if (!nav) return;
     var isIndex = document.body.getAttribute('data-i18n-page-title') === 'pageTitleIndex';
     if (!isIndex) return;
-    var linkHome = nav.querySelector('a[href="index.html"], a[href="/"]');
+    var linkHome = nav.querySelector('a[href="/"]');
     var linkServices = nav.querySelector('a[href="#uslugi"]');
     if (!linkHome || !linkServices) return;
 

@@ -1,5 +1,5 @@
 /**
- * Сервер Lidermed Platform — страницы, контент, портфолио, новости, заявки, настройки, роли.
+ * Сервер Lidermed IT Platform — страницы, контент, портфолио, новости, заявки, настройки, роли.
  */
 const path = require('path');
 const fs = require('fs');
@@ -36,7 +36,7 @@ function ensureDataFiles() {
     address: 'Doʻmbirobod 4-tor koʻchasi, 23/2',
     notificationEmail: '',
     social: { telegram: '', whatsapp: '', instagram: '' },
-    meta: { defaultTitle: 'Lidermed Platform', defaultDescription: 'IT-решения для фармацевтической отрасли — Узбекистан' },
+    meta: { defaultTitle: 'Lidermed IT Platform', defaultDescription: 'IT-решения для фармацевтической отрасли — Узбекистан' },
     seo: {},
     smtp: {}
   };
@@ -136,7 +136,7 @@ app.post('/api/lead', function (req, res) {
         const transport = nodemailer.createTransport(settings.smtp);
         transport.sendMail({
           to: settings.notificationEmail,
-          subject: 'Новая заявка с сайта Lidermed Platform',
+          subject: 'Новая заявка с сайта Lidermed IT Platform',
           text: `Имя: ${name}\nEmail: ${email || '—'}\nТелефон: ${phone || '—'}\nТип: ${type || '—'}\nСообщение: ${message || '—'}`
         }).catch(() => {});
       } catch (e) {}
@@ -412,6 +412,6 @@ app.get('/admin', function (req, res) {
 });
 
 app.listen(PORT, function () {
-  console.log('Lidermed Platform: http://localhost:' + PORT);
+  console.log('Lidermed IT Platform: http://localhost:' + PORT);
   console.log('Админ: http://localhost:' + PORT + '/admin (логин: admin, пароль: admin123)');
 });

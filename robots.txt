@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap.xml
+# Admin va API qidiruv indeksiga tushmasin
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://lidermed-pharma-it-platform.github.io/Sayt/sitemap.xml
