@@ -1,0 +1,22 @@
+# Lidermed: /contacts → contacts.html; contacts.html → /contacts (301).
+# Apache + mod_rewrite kerak.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) Avvalo: brauzerda .html ko‘rinmasin — 301
+  RewriteRule ^(contacts|services|privacy)\.html$ /$1 [R=301,L,NC]
+
+  # 2) API
+  RewriteCond %{REQUEST_URI} ^/api/
+  RewriteRule ^ - [L]
+
+  # 3) Boshqa mavjud fayl/papka
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 4) Ichki: kengaytmasiz so‘rov → .html
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(contacts|services|privacy)/?$ $1.html [L]
+</IfModule>

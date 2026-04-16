@@ -101,6 +101,13 @@ ensureDataFiles();
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(bodyParser.json({ limit: '5mb' }));
+
+['contacts', 'services', 'privacy'].forEach(function (name) {
+  app.get('/' + name, function (req, res) {
+    res.sendFile(path.join(__dirname, name + '.html'));
+  });
+});
+
 app.use(express.static(path.join(__dirname)));
 
 function requireAuth(req, res, next) {

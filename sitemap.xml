@@ -7,19 +7,19 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://lidermed-pharma-it-platform.github.io/Sayt/services.html</loc>
+    <loc>https://lidermed-pharma-it-platform.github.io/Sayt/services</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://lidermed-pharma-it-platform.github.io/Sayt/contacts.html</loc>
+    <loc>https://lidermed-pharma-it-platform.github.io/Sayt/contacts</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lidermed-pharma-it-platform.github.io/Sayt/privacy.html</loc>
+    <loc>https://lidermed-pharma-it-platform.github.io/Sayt/privacy</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.35</priority>
