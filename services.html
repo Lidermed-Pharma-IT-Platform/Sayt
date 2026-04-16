@@ -91,12 +91,26 @@
 
   <footer class="site-footer">
     <div class="container">
+      <h2 class="visually-hidden" data-i18n="footerNavHeading">Sayt bo'limlari</h2>
       <div class="grid">
-        <div><h4>Lidermed IT Platform</h4><p data-i18n="footerTagline">IT-решения для фармацевтической отрасли</p></div>
-        <div><h4 data-i18n="footerSections">Разделы</h4><ul><li><a href="/#uslugi" data-i18n="navServices">Услуги</a></li><li><a href="contacts.html" data-i18n="navContacts">Контакты</a></li></ul></div>
-        <div><h4 data-i18n="footerDocuments">Документы</h4><ul><li><a href="privacy.html" data-i18n="footerPrivacy">Политика конфиденциальности</a></li></ul><div id="footerSocial" class="footer-social"></div></div>
+        <section class="footer-col" aria-labelledby="footer-brand-heading">
+          <h3 id="footer-brand-heading">Lidermed IT Platform</h3>
+          <p data-i18n="footerTagline">IT-решения для фармацевтической отрасли</p>
+        </section>
+        <nav class="footer-col footer-col--sections" aria-labelledby="footer-sections-heading">
+          <h3 id="footer-sections-heading" data-i18n="footerSections">Разделы</h3>
+          <ul>
+            <li><a href="/#uslugi" data-i18n="navServices">Услуги</a></li>
+            <li><a href="contacts.html" data-i18n="navContacts">Контакты</a></li>
+          </ul>
+        </nav>
+        <section class="footer-col" aria-label="Social links">
+          <div id="footerSocial" class="footer-social"></div>
+        </section>
       </div>
-      <div class="footer-bottom"><span data-i18n="footerCopyright">© 2026 Lidermed IT Platform. Все права защищены.</span></div>
+      <div class="footer-bottom">
+        <span data-i18n="footerCopyright">© 2026 Lidermed IT Platform. Все права защищены.</span>
+      </div>
     </div>
   </footer>
 

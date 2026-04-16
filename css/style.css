@@ -70,18 +70,6 @@ html {
   border: 0;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(13, 148, 136, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(13, 148, 136, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-  z-index: 0;
-}
-
 body {
   margin: 0;
   position: relative;
@@ -426,11 +414,21 @@ select:focus-visible,
 
 /* ============ HERO ============ */
 .hero {
-  background: linear-gradient(180deg, rgba(13, 148, 136, 0.06) 0%, transparent 60%);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.84) 34%, rgba(255, 255, 255, 0.35) 58%, rgba(255, 255, 255, 0.08) 100%),
+    url('../img/hero/bghero.jpg') center center / cover no-repeat;
   color: var(--color-text);
-  padding: 80px 0 48px;
-  text-align: center;
+  /* Birinchi ekranda faqat hero: keyingi bo‘lim sarlavhasi pastda qolsin */
+  min-height: calc(100vh - var(--header-h) + 24px);
+  min-height: calc(100dvh - var(--header-h) + 24px);
+  padding: clamp(140px, 16vh, 200px) 0 clamp(88px, 9vh, 120px);
+  text-align: left;
   position: relative;
+  overflow: hidden;
+}
+
+.hero .container {
+  max-width: 1200px;
 }
 
 .hero::before {
@@ -453,6 +451,7 @@ select:focus-visible,
   color: var(--color-text);
   letter-spacing: -0.02em;
   animation: slideUp 0.5s ease-out both;
+  max-width: 700px;
 }
 
 .hero .lead {
@@ -460,16 +459,16 @@ select:focus-visible,
   font-size: 1.1rem;
   line-height: 1.7;
   color: var(--color-text-muted);
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 650px;
+  margin-left: 0;
+  margin-right: 0;
   animation: slideUp 0.5s ease-out 0.1s both;
 }
 
 .hero .actions {
   display: flex;
   gap: 16px;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   animation: slideUp 0.5s ease-out 0.2s both;
 }
@@ -490,6 +489,7 @@ select:focus-visible,
 
 /* ============ SECTIONS ============ */
 .section {
+  background: #fff;
   padding: 72px 0;
   animation: slideUp 0.5s ease-out both;
 }
@@ -524,6 +524,7 @@ select:focus-visible,
 
 /* ============ PROBLEM SECTION ============ */
 .section-problem {
+  background: #fff;
   padding-top: 24px;
   padding-bottom: 72px;
 }
@@ -554,16 +555,44 @@ select:focus-visible,
   text-align: center;
 }
 .problem-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 .problem-card {
+  display: grid;
+  align-items: center;
+  gap: clamp(20px, 4vw, 36px);
+  grid-template-columns: 1fr minmax(200px, 34%);
   padding: 28px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.problem-card--figure-left {
+  grid-template-columns: minmax(200px, 34%) 1fr;
+}
+.problem-card__body {
+  min-width: 0;
+}
+.problem-card__media {
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  align-self: center;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: block;
+}
+.problem-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 .problem-card:hover {
   border-color: rgba(13, 148, 136, 0.3);
@@ -573,14 +602,14 @@ select:focus-visible,
 .problem-card h3 {
   margin: 0 0 12px;
   font-family: var(--font-heading);
-  font-size: 1.08rem;
+  font-size: 1.28rem;
   font-weight: 600;
   color: var(--accent);
   line-height: 1.4;
 }
 .problem-card p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1.08rem;
   color: var(--color-text-muted);
   line-height: 1.7;
 }
@@ -1115,8 +1144,9 @@ select:focus-visible,
 }
 .clients-carousel-track {
   display: flex;
-  width: 200%;
-  animation: clientsCarousel 50s linear infinite;
+  width: max-content;
+  animation: clientsCarousel 40s linear infinite;
+  will-change: transform;
 }
 .clients-carousel-track:hover {
   animation-play-state: paused;
@@ -1127,18 +1157,17 @@ select:focus-visible,
 }
 .clients-carousel-set {
   display: flex;
-  flex: 0 0 50%;
+  flex: 0 0 auto;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   gap: 16px;
   padding: 0 20px;
-  min-width: 0;
+  min-width: max-content;
   flex-wrap: nowrap;
 }
 .client-card {
-  flex: 1 1 0;
-  min-width: 90px;
-  max-width: 160px;
+  flex: 0 0 140px;
+  width: 140px;
 }
 .client-card__inner {
   display: flex;
@@ -1164,8 +1193,8 @@ select:focus-visible,
 
 /* ============ CTA BLOCK ============ */
 .cta-block {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(13, 148, 136, 0.04) 100%);
-  border: 1px solid rgba(37, 99, 235, 0.12);
+  background: #fff;
+  border: 1px solid var(--color-border);
   color: var(--color-text);
   padding: 72px 0;
   text-align: center;
@@ -1226,6 +1255,11 @@ select:focus-visible,
 }
 
 .site-footer li { margin-bottom: 10px; }
+
+.footer-col--sections {
+  justify-self: end;
+  text-align: right;
+}
 
 .footer-bottom {
   padding-top: 24px;
@@ -1586,7 +1620,10 @@ select:focus-visible,
     gap: 24px;
   }
   .hero {
-    padding: 60px 0 40px;
+    background-position: 62% center;
+    min-height: calc(100vh - var(--header-h) + 24px);
+    min-height: calc(100dvh - var(--header-h) + 24px);
+    padding: clamp(100px, 12vh, 140px) 0 clamp(56px, 7vh, 88px);
   }
 }
 
@@ -1596,16 +1633,39 @@ select:focus-visible,
     padding: 48px 0;
   }
   .hero {
-    padding: 48px 0 36px;
+    text-align: center;
+    background-position: 66% center;
+    min-height: calc(100vh - var(--header-h) + 24px);
+    min-height: calc(100dvh - var(--header-h) + 24px);
+    padding: clamp(80px, 11vh, 120px) 0 clamp(44px, 6vh, 72px);
   }
   .hero h1 {
     font-size: 1.65rem;
   }
   .hero .lead {
     font-size: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero .actions {
+    justify-content: center;
   }
   .problem-grid {
+    gap: 20px;
+  }
+  .problem-card,
+  .problem-card--figure-left {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .problem-card--figure-left .problem-card__body {
+    order: -1;
+  }
+  .problem-card__media {
+    max-width: 420px;
+    width: 100%;
+    margin-inline: auto;
+    aspect-ratio: 16 / 10;
   }
   .product-grid {
     grid-template-columns: 1fr;
@@ -1632,6 +1692,10 @@ select:focus-visible,
   .site-footer .grid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+  .footer-col--sections {
+    justify-self: start;
+    text-align: left;
   }
   .slider {
     padding-bottom: 60%;
@@ -1681,7 +1745,10 @@ select:focus-visible,
     padding: 0 16px;
   }
   .hero {
-    padding: 36px 0 28px;
+    background-position: 70% center;
+    min-height: calc(100vh - var(--header-h) + 24px);
+    min-height: calc(100dvh - var(--header-h) + 24px);
+    padding: clamp(64px, 10vh, 96px) 0 clamp(36px, 5vh, 56px);
   }
   .hero h1 {
     font-size: 1.45rem;
@@ -1712,7 +1779,7 @@ select:focus-visible,
   .stats--reasons {
     grid-template-columns: 1fr;
   }
-  .client-card { min-width: 120px; }
+  .client-card { flex-basis: 120px; width: 120px; min-width: 120px; }
   .client-card__logo { max-height: 56px; }
   .cta-block {
     padding: 36px 0;
