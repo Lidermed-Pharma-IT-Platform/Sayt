@@ -766,7 +766,7 @@
   }
 
   function applyLang(lang) {
-    if (lang !== 'ru' && lang !== 'uz') lang = 'ru';
+    if (lang !== 'ru' && lang !== 'uz') lang = 'uz';
     setLang(lang);
     var L = t[lang];
 

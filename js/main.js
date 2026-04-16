@@ -6,7 +6,7 @@
 
   function getT() {
     var lang = (window.i18n && window.i18n.getLang()) ? window.i18n.getLang() : 'uz';
-    return (window.i18n && window.i18n.t && window.i18n.t[lang]) ? window.i18n.t[lang] : window.i18n.t.ru;
+    return (window.i18n && window.i18n.t && window.i18n.t[lang]) ? window.i18n.t[lang] : (window.i18n.t.uz || window.i18n.t.ru);
   }
 
   // ——— Мобильное меню ———
