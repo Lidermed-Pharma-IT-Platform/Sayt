@@ -9,35 +9,6 @@
     return (window.i18n && window.i18n.t && window.i18n.t[lang]) ? window.i18n.t[lang] : window.i18n.t.ru;
   }
 
-  // ——— Главная / Услуги: active border только на index, по hash ———
-  (function navActiveByHash() {
-    var nav = document.getElementById('navMain');
-    if (!nav) return;
-    var isIndex = document.body.getAttribute('data-i18n-page-title') === 'pageTitleIndex';
-    if (!isIndex) return;
-    var linkHome = nav.querySelector('a[href="/"]');
-    var linkServices = nav.querySelector('a[href="#uslugi"]');
-    if (!linkHome || !linkServices) return;
-
-    function updateActive() {
-      var hash = window.location.hash;
-      if (hash === '#uslugi') {
-        linkHome.classList.remove('active');
-        linkHome.removeAttribute('aria-current');
-        linkServices.classList.add('active');
-        linkServices.setAttribute('aria-current', 'page');
-      } else {
-        linkHome.classList.add('active');
-        linkHome.setAttribute('aria-current', 'page');
-        linkServices.classList.remove('active');
-        linkServices.removeAttribute('aria-current');
-      }
-    }
-
-    window.addEventListener('hashchange', updateActive);
-    updateActive();
-  })();
-
   // ——— Мобильное меню ———
   var menuToggle = document.getElementById('menuToggle');
   var navMain = document.getElementById('navMain');
