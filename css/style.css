@@ -530,30 +530,36 @@ select:focus-visible,
   padding-bottom: 72px;
 }
 .section-problem .section-title {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   text-align: center;
+  font-size: clamp(2rem, 4.2vw, 2.65rem);
+  line-height: 1.22;
 }
 /* To'liq kenglikdagi qatorlar tekis, oxirgi qator to'ldirmasa o'rta */
 .problem-intro {
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   color: var(--color-text-muted);
-  line-height: 1.75;
+  font-size: clamp(1.0625rem, 2.2vw, 1.25rem);
+  line-height: 1.78;
   width: 100%;
   text-align: justify;
   text-align-last: center;
 }
 .problem-intro-2 {
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   text-align: justify;
   text-align-last: center;
+  font-size: clamp(1.0625rem, 2.2vw, 1.25rem);
+  line-height: 1.78;
 }
 .problem-subtitle {
-  margin: 0 0 28px;
+  margin: 0 0 32px;
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 1.15rem;
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
   color: var(--color-text);
   text-align: center;
+  line-height: 1.45;
 }
 .problem-grid {
   display: flex;
