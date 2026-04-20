@@ -175,10 +175,11 @@ select:focus-visible,
 }
 
 .nav-main {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
+  justify-content: end;
+  column-gap: 12px;
   flex: 1 1 auto;
   min-width: 0;
 }
@@ -237,11 +238,47 @@ select:focus-visible,
 .nav-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 12px;
   flex-shrink: 0;
   margin-left: 8px;
   padding-left: 16px;
   border-left: 1px solid var(--color-border);
+}
+
+.header-contacts {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  order: 2;
+}
+
+.header-contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.header-contact-link:hover {
+  color: var(--accent);
+  border-color: rgba(13, 148, 136, 0.35);
+  background: rgba(13, 148, 136, 0.08);
+  text-decoration: none;
+}
+
+.header-contact-icon {
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
 .lang-switch {
@@ -250,6 +287,7 @@ select:focus-visible,
   gap: 6px;
   width: 4.5rem;
   justify-content: center;
+  order: 1;
 }
 
 .lang-switch .lang-link {
@@ -334,13 +372,27 @@ select:focus-visible,
     border-left: 3px solid var(--accent);
   }
   .nav-actions {
-    flex-direction: row;
+    flex-direction: column;
+    align-items: flex-start;
     margin-left: 0;
     padding-left: 0;
     border-left: none;
     border-top: 1px solid var(--color-border);
     padding-top: 12px;
     margin-top: 4px;
+    gap: 10px;
+  }
+  .header-contacts {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .header-contact-link {
+    justify-content: flex-start;
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    border-radius: var(--radius);
   }
   .lang-switch {
     width: auto;
