@@ -26,7 +26,7 @@
   --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 2px 8px rgba(15, 23, 42, 0.04);
   --shadow-lg: 0 4px 12px rgba(15, 23, 42, 0.06), 0 8px 32px rgba(15, 23, 42, 0.08);
   --max-width: 1200px;
-  --header-h: 84px;
+  --header-h: 108px;
   --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -151,7 +151,7 @@ select:focus-visible,
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 0;
   flex-shrink: 0;
   min-width: 0;
   text-decoration: none;
@@ -161,26 +161,12 @@ select:focus-visible,
 
 .logo__img {
   display: block;
-  height: 70px;
+  height: 100px;
   width: auto;
-  max-width: 360px;
+  max-width: 514px;
   object-fit: contain;
   object-position: left center;
   flex-shrink: 0;
-}
-
-.logo__wordmark {
-  display: inline-block;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.45rem;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-  white-space: nowrap;
-}
-
-.logo__wordmark-platform {
-  color: var(--accent);
 }
 
 .logo:hover {
@@ -1611,13 +1597,8 @@ select:focus-visible,
 /* ============ RESPONSIVE — TABLET (max 1024px) ============ */
 @media (max-width: 1024px) {
   .product-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 20px;
-  }
-  .product-block:last-child {
-    grid-column: 1 / -1;
-    max-width: 560px;
-    justify-self: center;
   }
   .stats--reasons {
     grid-template-columns: repeat(3, 1fr);
@@ -1627,10 +1608,22 @@ select:focus-visible,
     gap: 24px;
   }
   .hero {
+    text-align: center;
     background-position: 62% center;
     min-height: calc(100vh - var(--header-h) + 24px);
     min-height: calc(100dvh - var(--header-h) + 24px);
     padding: clamp(100px, 12vh, 140px) 0 clamp(56px, 7vh, 88px);
+  }
+  .hero h1 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero .lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero .actions {
+    justify-content: center;
   }
 }
 
@@ -1640,7 +1633,6 @@ select:focus-visible,
     padding: 48px 0;
   }
   .hero {
-    text-align: center;
     background-position: 66% center;
     min-height: calc(100vh - var(--header-h) + 24px);
     min-height: calc(100dvh - var(--header-h) + 24px);
@@ -1651,11 +1643,6 @@ select:focus-visible,
   }
   .hero .lead {
     font-size: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .hero .actions {
-    justify-content: center;
   }
   .problem-grid {
     gap: 20px;
@@ -1677,10 +1664,6 @@ select:focus-visible,
   .product-grid {
     grid-template-columns: 1fr;
     gap: 16px;
-  }
-  .product-block:last-child {
-    max-width: none;
-    grid-column: auto;
   }
   .product-block {
     padding: 24px;
@@ -1731,22 +1714,10 @@ select:focus-visible,
 }
 
 /* ============ RESPONSIVE — SMALL PHONES (max 480px) ============ */
-@media (max-width: 768px) {
-  .logo__wordmark {
-    font-size: 1.2rem;
-  }
-}
-
 @media (max-width: 480px) {
-  .logo {
-    gap: 8px;
-  }
   .logo__img {
-    height: 52px;
-    max-width: 260px;
-  }
-  .logo__wordmark {
-    font-size: 1.05rem;
+    height: 72px;
+    max-width: 372px;
   }
   .container {
     padding: 0 16px;

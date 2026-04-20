@@ -17,7 +17,7 @@
       navContacts: 'Контакты',
       navBlog: 'Блог',
       navSearch: 'Поиск',
-      navMenu: 'Меню',
+      navMenu: '☰',
       logoWordmarkPrefix: 'Lidermed ',
       logoWordmarkPlatform: 'IT Platform',
       heroTitle: 'Цифровые решения для фармацевтических компаний',
