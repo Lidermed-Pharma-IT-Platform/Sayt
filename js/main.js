@@ -110,15 +110,52 @@
   // ——— Форма обратной связи ———
   var contactForm = document.getElementById('contactForm');
   var formStatus = document.getElementById('formStatus');
+  var phoneInput = document.getElementById('phone');
+  var uzPhonePattern = /^\+998 \d{2} \d{3}-\d{2}-\d{2}$/;
+
+  function formatUzPhone(value) {
+    var digits = (value || '').replace(/\D/g, '');
+    if (digits.indexOf('998') === 0) {
+      digits = digits.slice(3);
+    }
+    digits = digits.slice(0, 9);
+    var out = '+998';
+    if (digits.length > 0) out += ' ' + digits.slice(0, 2);
+    if (digits.length > 2) out += ' ' + digits.slice(2, 5);
+    if (digits.length > 5) out += '-' + digits.slice(5, 7);
+    if (digits.length > 7) out += '-' + digits.slice(7, 9);
+    return out;
+  }
+
+  if (phoneInput) {
+    phoneInput.addEventListener('focus', function () {
+      if (!phoneInput.value) {
+        phoneInput.value = '+998 ';
+      }
+    });
+    phoneInput.addEventListener('input', function () {
+      phoneInput.value = formatUzPhone(phoneInput.value);
+    });
+    phoneInput.addEventListener('blur', function () {
+      if (phoneInput.value === '+998 ') {
+        phoneInput.value = '';
+      }
+    });
+  }
 
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = document.getElementById('name').value.trim();
-      var phone = (document.getElementById('phone') && document.getElementById('phone').value.trim()) || '';
+      var phone = (phoneInput && phoneInput.value.trim()) || '';
 
       if (!name || !phone) {
         setFormStatus((getT().formError || 'Заполните имя и телефон.'), 'error');
+        return;
+      }
+
+      if (!uzPhonePattern.test(phone)) {
+        setFormStatus('Telefon raqamni +998 XX XXX-XX-XX formatida kiriting.', 'error');
         return;
       }
 

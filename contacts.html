@@ -52,7 +52,7 @@
           <div class="header-contacts">
             <a class="header-contact-link" href="tel:+998881983000" data-i18n-href="contactPhoneHref">
               <span class="header-contact-icon" aria-hidden="true">☎</span>
-              <span data-i18n="contactPhoneVal">+998881983000</span>
+              <span data-i18n="contactPhoneVal">+998 88 198-30-00</span>
             </a>
             <a class="header-contact-link" href="mailto:lidermeduz@gmail.com" data-i18n-href="contactEmailHref">
               <span class="header-contact-icon" aria-hidden="true">✉</span>
@@ -82,7 +82,7 @@
         <div class="contact-grid">
           <div class="contact-info">
             <h2 class="section-title" data-i18n="contactsDetails">Rekvizitlar</h2>
-            <div class="item"><strong data-i18n="contactPhone">Telefon</strong><br><a href="tel:+998881983000" data-i18n-href="contactPhoneHref" data-i18n="contactPhoneVal">+998881983000</a></div>
+            <div class="item"><strong data-i18n="contactPhone">Telefon</strong><br><a href="tel:+998881983000" data-i18n-href="contactPhoneHref" data-i18n="contactPhoneVal">+998 88 198-30-00</a></div>
             <div class="item"><strong data-i18n="contactEmail">Email</strong><br><a href="mailto:lidermeduz@gmail.com" data-i18n-href="contactEmailHref" data-i18n="contactEmailVal">lidermeduz@gmail.com</a></div>
           </div>
 
@@ -96,7 +96,7 @@
               </div>
               <div class="form-group">
                 <label for="phone" data-i18n="formPhone">Telefon *</label>
-                <input type="tel" id="phone" name="phone" required aria-required="true">
+                <input type="tel" id="phone" name="phone" required aria-required="true" inputmode="numeric" placeholder="+998 XX XXX-XX-XX" pattern="^\+998 \d{2} \d{3}-\d{2}-\d{2}$" maxlength="17">
               </div>
               <button type="submit" class="btn btn-primary" data-i18n="formSubmit">So'rov yuborish</button>
               <p id="formStatus" class="form-status"></p>

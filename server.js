@@ -31,7 +31,7 @@ function ensureDataFiles() {
   if (!fs.existsSync(LEADS_FILE)) fs.writeFileSync(LEADS_FILE, '[]', 'utf8');
 
   const defaultSettings = {
-    phone: '+998881983000',
+    phone: '+998 88 198-30-00',
     email: 'lidermeduz@gmail.com',
     address: 'Doʻmbirobod 4-tor koʻchasi, 23/2',
     notificationEmail: '',
